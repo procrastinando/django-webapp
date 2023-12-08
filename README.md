@@ -34,12 +34,12 @@ This code snippet demonstrates the installation of Python, creating a virtual en
 ## 5. Creating a home page:
 1. Create a directory `templates` into `myapp`. The `./myapp/templates/base.html` will be extended to any page that needs it, such as `./myapp/templates/home.html`.
 2. Render the page, add this to `./myapp/views.py`:
-    python```
+    ```
     def home(request):
     return render(request, 'home.html')
     ```
 3. Define the url in `./myapp/urls.py`:
-    python```
+    ```
     from django.urls import path
     from . import views
 
