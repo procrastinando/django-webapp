@@ -1,1 +1,4 @@
 django
+# To use MySQL
+pip install mysql
+pip install mysql-connector
