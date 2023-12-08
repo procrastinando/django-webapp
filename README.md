@@ -1,28 +1,25 @@
-# FILEPATH
-
-"""
 This code snippet demonstrates the installation of Python, creating a virtual environment, installing libraries, and creating a Django web application.
 
-Installation Steps for Python (Latest Version) on Windows:
+## 1. Installation Steps for Python (Latest Version) on Windows:
 1. Visit the official Python website at https://www.python.org/downloads/ and download the latest version of Python for Windows.
 2. Run the downloaded installer and follow the installation wizard.
 3. Make sure to check the option "Add Python to PATH" during the installation process.
 4. Verify the installation by opening the command prompt and running the command "python --version".
 
-Installation Steps for Python (Latest Version) on Linux:
+## 2. Installation Steps for Python (Latest Version) on Linux:
 1. Open the terminal and run the following command to update the package list: 
     sudo apt update
 2. Install Python by running the following command:
     sudo apt install python3
 3. Verify the installation by running the command "python3 --version" in the terminal.
 
-Creating a New project:
+## 3. Creating a New project:
 1. Open the command prompt or terminal.
 2. Navigate to the project directory using the "cd" command.
 3. Run the following command to start a new project (webapp):
     django-admin startproject webapp
 
-Basic settings:
+## 4. Basic settings:
 1. Inside the project directory (webapp):
     `python manage.py startapp myapp`
     Append "myapp" to "INSTALLED_APPS" in `./webapp/settings.py`
@@ -34,7 +31,7 @@ Basic settings:
     `python ./manage.py migrate`
 4. Run `python ./manage.py runserver` and the welcome django page will be shown
 
-Creating a home page:
+## 5. Creating a home page:
 1. Create a directory `templates` into `myapp`. The `./myapp/templates/base.html` will be extended to any page that needs it, such as `./myapp/templates/home.html`.
 2. Render the page, add this to `./myapp/views.py`:
     python```
@@ -52,10 +49,10 @@ Creating a home page:
     ```
 4. Run `python ./manage.py runserver`
 
-A To DO List page with database:
-0. Create a MySQL database
-0.1. In `./myapp/webapp.py` insert the db type and credentials:
-python```
+## 6. A To DO List page with database:
+### 0. Create a MySQL database
+#### 0.1. In `./myapp/webapp.py` insert the db type and credentials:
+```
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -67,12 +64,9 @@ DATABASES = {
     }
 }
 ```
-0.2. Create the database using workbench, or usin python:
-python```
+#### 0.2. Create the database using workbench, or using python:
+```
 # Install Mysql on your computer => https://dev.mysql.com/downloads/installer/
-# pip install mysql
-# pip install mysql-connector or pip install mysql-connector-python 
-
 import mysql.connector
 
 dataBase = mysql.connector.connect(
@@ -84,21 +78,21 @@ dataBase = mysql.connector.connect(
 cursorObject = dataBase.cursor()
 cursorObject.execute("CREATE DATABASE myapp")
 ```
-1. ToDo Database:
-1.1. Create a class in `./myapp/models.py`, for example:
-python```
+### 1. ToDo Database:
+#### 1.1. Create a class in `./myapp/models.py`, for example:
+```
 class TodoItem(models.Model):
     title = models.CharField(max_length=256)
     completed = models.BooleanField(default=False)
 ```
-1.2. Register the site in admin `./myapp/admin.py`, for example:
-python```
+#### 1.2. Register the site in admin `./myapp/admin.py`, for example:
+```
 from .models import TodoItem
 admin.site.register(TodoItem)
 ```
 
-2. ToDo page:
-2.1. Create the html template `./myapp/templates/todos.html`
+### 2. ToDo page:
+#### 2.1. Create the html template `./myapp/templates/todos.html`
 ```
 {% extends 'base.html' %}
 {% block content %}
@@ -112,7 +106,7 @@ admin.site.register(TodoItem)
 </ul>
 {% endblock %}
 ```
-2.2. Render the page `./myapp/views.py`, import also data from database:
+#### 2.2. Render the page `./myapp/views.py`, import also data from database:
 ```
 from .models import TodoItem
 
@@ -124,5 +118,4 @@ def todos(request):
 urlpatterns = [
     path("todos/", views.todos, name="todos")
 ]
-3. Run `python ./manage.py runserver`
-"""
+### 3. Run `python ./manage.py runserver`
